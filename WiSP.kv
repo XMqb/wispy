@@ -1,0 +1,73 @@
+#:import C kivy.utils.get_color_from_hex
+
+<RoundedButton@Button>:
+    color: (0, 0, 0, 1)
+    background_color: 0,0,0,0  # the last zero is the critical on, make invisible
+    canvas.before:
+        Color:
+            rgba: (.0,.867,.6,1) if self.state=='normal' else (0,.667,.463,1)  # visual feedback of press
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [18,2,18,2]
+
+<RoundedButtonTwo@Button>:
+    color: (.0,.867,.6,1)
+    background_color: 0,0,0,0
+    canvas.before:
+        Color:
+            rgba: C('#ffffff')
+    canvas.after:
+        Color:
+            rgb: C('#ffffff')
+        Color:
+            rgba: C('#ffffff')
+        Line:
+            width: 1.5
+            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            width: 1.5
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+        Line:
+            width: 1.5
+            ellipse: self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 180, 360
+        Line:
+            width: 1.5
+            ellipse: self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 360, 540
+
+<WiSPApp>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Image:
+            source: "0d9.png"
+
+
+<RoundedInput@TextInput>:
+    font_size: '14dp'
+    foreground_color: 1,1,1,1
+    background_color: 1,1,1,0
+    hint_text: "Type here..."
+    hint_text_color: (0.7, 0.7, 0.7, 0.6)
+    cursor_color: C('#ffffff')
+    canvas.before:
+        Color:
+            rgba: C('#ffffff')
+    canvas.after:
+        Color:
+            rgb: C('#ffffff')
+        Color:
+            rgba: C('#ffffff')
+        Line:
+            width: 1.5
+            points: self.pos[0] , self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            width: 1.5
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+        Line:
+            width: 1.5
+            ellipse: self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 180, 360
+        Line:
+            width: 1.5
+            ellipse: self.size[0] + self.pos[0] - self.size[1]/2.0, self.pos[1], self.size[1], self.size[1], 360, 540
